@@ -6,6 +6,7 @@ import { sequelize } from "./db/index.js";
 import productsRouter from "./services/products/products.js";
 import reviewsRouter from "./services/reviews/reviews.js";
 import categoriesRouter from "./services/categories/categories.js";
+import cartRouter from "./services/cart/cart.js";
 
 const server = express()
 const port = 3001 || process.env.PORT
@@ -20,6 +21,7 @@ server.use(express.json())
 server.use("/products", productsRouter)
 server.use("/reviews", reviewsRouter)
 server.use("/categories", categoriesRouter)
+server.use("/cart", cartRouter)
 
 // ****************** ERROR HANDLERS ***********************
 
