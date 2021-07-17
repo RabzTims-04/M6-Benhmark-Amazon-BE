@@ -28,7 +28,7 @@ cartRouter.route("/")
             [sequelize.fn("SUM", sequelize.col("product.price")), "total"],
           ],
           
-          include: { model: Product, attributes: ["name", "price"] },
+          include: { model: Product, attributes: ["name", "price", "imageUrl", "description", "brand"] },
           group: ["productId", "product.id"],
         });
     
@@ -50,6 +50,17 @@ cartRouter.route("/")
         next(error);
       }
 })
+.delete( async (req, res, next) => {
+    try {
+        const rowsCount = await Cart.destroy({
+            where:{}
+        })
+        res.send("deleted")
+    } catch (error) {
+        console.log(error);
+        next(error)
+    }
+})
 
 cartRouter.route("/:prodId")
 .delete ( async (req, res, next) => {
@@ -60,6 +71,7 @@ cartRouter.route("/:prodId")
             },
             limit: !req.query.all && 1
         })
+        console.log(rowsCount);
         if(rowsCount > 1){
             res.send('product removed from cart')
         }
