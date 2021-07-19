@@ -7,10 +7,10 @@ import Cart from "./models/cartModel.js"
 Product.hasMany(Review)
 Review.belongsTo(Product)
 
-Category.hasMany(Product)
+Category.hasMany(Product,{onDelete: 'cascade',hooks:true })
 Product.belongsTo(Category)
 
-Product.hasMany(Cart)
+Product.hasMany(Cart,{onDelete: 'cascade',hooks:true })
 Cart.belongsTo(Product)
 
 export { sequelize, Product, Review, Category, Cart }
