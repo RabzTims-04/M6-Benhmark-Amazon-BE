@@ -9,8 +9,7 @@ import categoriesRouter from "./services/categories/categories.js";
 import cartRouter from "./services/cart/cart.js";
 
 const server = express()
-const port = 3001 || process.env.PORT
-
+const port = process.env.PORT || 3002 
 // ****************** MIDDLEWARES ****************************
 
 server.use(cors())
